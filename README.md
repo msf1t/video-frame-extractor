@@ -1,14 +1,13 @@
 # Video Frame Extractor
 
-Extract evenly spaced frames from MP4 videos using Python. Supports recursive search, custom number of frames, frames-per-minute, and dry-run mode.
+Extract frames from MP4 videos into a **single output directory**, with options for recursion, frames-per-minute, and dry-run mode.
 
 ## Features
 
-- Extract a fixed number of evenly spaced frames per video
+- Extract a fixed number of evenly spaced frames per video (`-n`)
 - Extract frames per minute of video (`--per-minute`)
 - Recursive search for MP4 files (`-R`)
-- Output frames into `<videoName>_out` folders next to each video
-- Filenames contain timestamp in `HH_MM_SS` format
+- Output all frames into a **single directory** with filenames: `videoName_HH_MM_SS.jpg`
 - Dry-run mode to preview what would be extracted (`--dry-run`)
 - Cross-platform: Windows/macOS/Linux
 
@@ -20,14 +19,17 @@ Extract evenly spaced frames from MP4 videos using Python. Supports recursive se
 ## Usage
 
 ```bash
-# Extract default 20 frames per video
+# Default: 20 frames per video, output to same folder as video
 python extract_frames.py "path/to/videos"
 
-# Extract 50 frames per video
-python extract_frames.py "path/to/videos" -n 50
+# Recursive search
+python extract_frames.py "path/to/videos" -R
 
-# Extract 5 frames per minute of video, recursively
-python extract_frames.py "path/to/videos" --per-minute 5 -R
+# Extract 50 frames per video into a single folder
+python extract_frames.py "path/to/videos" -n 50 -o "path/to/frames"
 
-# Dry-run to preview
+# Extract 5 frames per minute, recursively, into a single folder
+python extract_frames.py "path/to/videos" --per-minute 5 -R -o "path/to/frames"
+
+# Dry-run to preview without writing files
 python extract_frames.py "path/to/videos" -R --dry-run
